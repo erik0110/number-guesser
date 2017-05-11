@@ -24,9 +24,10 @@ clearBtn.addEventListener('click', function() {
 });
 
 resetBtn.addEventListener('click', function() {
-  randomNumber();
+  // randomNumber();
   console.log("I'm working " + randomNum);
   userInput.value  = '';
+  reloadPage();
 });
 
 function randomNumber() {
@@ -35,15 +36,24 @@ function randomNumber() {
   randomNum = Math.floor(Math.random() * (100 - 1 + 1)) + 1;
 };
 
+function reloadPage() {
+  window.location.reload();
+}
+
 randomNumber();
 console.log("woohoo" + randomNum);
 
 function evaluation() {
-  if(parseInt(userInput.value) < randomNum){
-  feedback.innerText = "Sorry Charlie, too low";
-} else if(parseInt(userInput.value) > randomNum){
-  feedback.innertext = "Guess again, too high";
-} else {
-  feedback.innerText = "BOOM!";
-}
+    var guessed = parseInt(userInput.value)
+    console.log("User guess is: " + guessed);
+    console.log("Computer number is: " + randomNum);
+    if (guessed < randomNum) {
+      feedback.innerText = "Sorry Charlie, too low";
+    }
+    else if(guessed > randomNum) {
+    feedback.innerText = "Guess again, too high";
+  }
+    else if(guessed === randomNum) {
+    feedback.innerText = "BOOM!";
+  }
 }
